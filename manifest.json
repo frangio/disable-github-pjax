@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "version": "0.0.1",
+  "name": "disable-github-pjax",
+  "description": "Disable PJAX on GitHub",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.github.com/*"
+      ],
+      "js": [
+        "content_script.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

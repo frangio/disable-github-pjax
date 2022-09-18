@@ -1,0 +1,16 @@
+name: extension
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: npm
+      - run: npm ci
+      - run: npx web-ext sign --api-key=${{secrets.AMO_JWT_ISSUER}} --api-secret=${{secrets.AMO_JWT_SECRET}}
+      - uses: actions/upload-artifact@v3
+        with:
+          path: web-ext-artifacts/
