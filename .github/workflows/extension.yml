@@ -13,7 +13,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: |
-          jq .version=\"$(git describe)\" manifest.json > manifest.json.new
+          jq '.version += "b-" + (now|strftime("%s"))' manifest.json > manifest.json.new
           mv manifest.json.new manifest.json
       - run: npx web-ext sign --api-key=${{secrets.AMO_JWT_ISSUER}} --api-secret=${{secrets.AMO_JWT_SECRET}}
       - uses: actions/upload-artifact@v3
