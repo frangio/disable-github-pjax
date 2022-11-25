@@ -9,9 +9,14 @@ function disablePjax() {
 }
 
 function onReady(cb) {
-  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  if (document.readyState !== 'loading') {
     cb();
   } else {
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState !== 'loading') {
+        cb();
+      }
+    });
     window.addEventListener('DOMContentLoaded', cb, { once: true, capture: true });
   }
 }
