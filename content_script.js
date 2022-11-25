@@ -8,5 +8,5 @@ function disablePjax(e) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', disablePjax, { once: true });
-document.addEventListener('click', disablePjax, { once: true, capture: true });
+window.addEventListener('DOMContentLoaded', disablePjax, { once: true, capture: true });
+window.addEventListener('click', disablePjax, { once: true, capture: true });
